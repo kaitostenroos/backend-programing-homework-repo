@@ -1,5 +1,7 @@
 package bookstore.bookstore.domain;
 
-public @interface BookRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookRepository extends CrudRepository<Kirja, Long>{
 
 }
