@@ -1,11 +1,17 @@
 package bookstore.bookstore.web;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.hateoas.server.core.Relation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bookstore.bookstore.domain.Kirja;
 import bookstore.bookstore.domain.Category;
@@ -52,6 +58,16 @@ public class KirjaController {
         model.addAttribute("kirja", repository.findById(bookId));
         model.addAttribute("categories", cRepository.findAll());
         return "editbook";
+    }
+
+    @RequestMapping(value = "books")
+    public @ResponseBody List<Kirja>booklistRest() {
+        return (List<Kirja>)repository.findAll();
+    }
+
+    @RequestMapping(value = "book{id}", method = RequestMethod.GET)
+    public @ResponseBody Kirja findBookRest(@PathVariable("id") Long bookId) {
+        return repository.findById(bookId).get();
     }
 
 }

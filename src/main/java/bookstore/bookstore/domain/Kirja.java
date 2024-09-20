@@ -1,5 +1,7 @@
 package bookstore.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class Kirja {
     private String isbn;
     private double price;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
