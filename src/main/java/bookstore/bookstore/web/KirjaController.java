@@ -26,6 +26,11 @@ public class KirjaController {
     @Autowired
     private CategoryRepository cRepository;
 
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
+
     @RequestMapping(value = { "/", "/booklist" })
     public String Books(Model model) {
         model.addAttribute("books", repository.findAll());

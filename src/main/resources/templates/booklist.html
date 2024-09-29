@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>Books</h1>
+    
     <table class="table table-striped">
 		<tr>
 		    <th>Author</th>
@@ -14,6 +15,11 @@
             <th>ISBN</th>
             <th>Year</th>
             <th>Category</th>
+            <th>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+                </form>
+            </th>
 		</tr>  
     	<tr th:each = "kirja : ${books}">
     		<td th:text="${kirja.title}"></td>
